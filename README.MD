@@ -29,7 +29,7 @@ You will learn about Merkle Tree and how it works.
 
 - *Leaf node*: It represents the end of a path in the tree and contain hashes of the data blocks (e.g., transactions). These are the tree's foundation and they have  no children.
 
-- *Parent node*: Non-leaf nodes in a Merkle Tree that contain hashes derived from their child.
+- *Parent node*: Known as non-leaf nodes in a Merkle Tree that contain hashes derived from their child(leaf node).
 
 - *Root node*: A type of parent node known as Merkle root, contains a hash derived from the entire dataset.
 
