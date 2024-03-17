@@ -5,6 +5,7 @@
 - [MERKLE TREE](#merkle-tree)
   - [TABLE OF CONTENTS](#table-of-contents)
   - [Introduction](#introduction)
+  - [Common Terminologies used](#common-terminologies-used)
   - [What is Merkle tree?](#what-is-merkle-tree)
   - [Hash functions](#hash-functions)
   - [Merkle Proof](#merkle-proof)
@@ -20,11 +21,25 @@ Imagine having to verify the authenticity of a single transaction within a block
 
 You will learn about Merkle Tree and how it works.
 
+## Common Terminologies used
+
+- *Node*:  A basic unit of binary tree used to build the structure which contains data and one or several links to other nodes.
+
+- *Binary tree*: nodes arranged in a hierarchical structure. Each node in a binary tree has a maximum of two children, referred to as the left child and the right child. 
+
+- *Leaf node*: It represents the end of a path in the tree and contain hashes of the data blocks (e.g., transactions). These are the tree's foundation and they have  no children.
+
+- *Parent node*: Non-leaf nodes in a Merkle Tree that contain hashes derived from their child.
+
+- *Root node*: A type of parent node known as Merkle root, contains a hash derived from the entire dataset.
+
+- *Hash*: The output of a hash function.
+
 ## What is Merkle tree?
 
 ![Merkle tree](/assets/merkleTree.jpeg)
 
-This is a hash based data structure that is used for data validation. A binary tree consisting of hash pointers. The leaves (the bottom-most nodes) labeled in the diagram as `leaf nodes` contain hashes of individual transactions. Moving up the tree, each non-leaf node known as the parent node is a hash of the combined hashes of its two child nodes(leaf nodes). This process continues until there is a single hash at the top, known as the Merkle root(Root node).
+ Merkle Tree is a binary tree in which every leaf node is a hash of a block of data (for example, a transaction), and every non-leaf node is a hash of the concatenation of its child nodes.  The the bottom-most nodes labeled in the diagram as `leaf nodes` contain hashes of individual transactions, and  moving up the tree, each non-leaf node known as the `parent node` is a hash of the combined hashes of its two child nodes(leaf nodes). This process continues until there is a single hash at the top, known as the Merkle root(Root node).
 
  Any alteration of a single transaction would result in a different hash being propagated up to the root. This concept allows for the verification of a transaction within a block without needing to hold the entire block's data. When correctly combined, should match the block's Merkle root.
 
