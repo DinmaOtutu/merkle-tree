@@ -10,6 +10,12 @@
   - [Hash functions](#hash-functions)
   - [Merkle Proof](#merkle-proof)
   - [Implementing Merkle Proof In Javascript](#implementing-merkle-proof-in-javascript)
+    - [Explanation](#explanation)
+      - [Preparing Data for the Tree](#preparing-data-for-the-tree)
+      - [Building the Merkle Tree](#building-the-merkle-tree)
+      - [The Merkle Root:](#the-merkle-root)
+      - [Creating and Verifying a Merkle Proof:](#creating-and-verifying-a-merkle-proof)
+      - [Logged Data](#logged-data)
   - [Conclusion](#conclusion)
 
 ## Introduction
@@ -130,6 +136,31 @@ Tree: └─ a7658d9f1b7d4e4d50184435344c7b27fd0d10b1f813143c421bb0733969054c
 
 Is Verified: true
  ```
+
+### Explanation
+
+#### Preparing Data for the Tree
+
+ We have a list of individual characters: ['m', 'e', 'r', 'k', 'l', 'e'].
+ Each character is hashed (transformed into a unique, fixed-size string of numbers and letters) using the hash function, keccak256, turning it into a format that can be securely handled. These hashed values are the leaf nodes of our Merkle Tree.
+
+#### Building the Merkle Tree
+
+The MerkleTree class from the merkletreejs library is used to create the tree. When building the tree, we specify to use the keccak256 hash function and to sort pairs, which ensures consistency in how the tree is structured.
+As the tree is constructed, each non-leaf node is created by hashing together its child nodes, layer by layer, until we reach the root.
+
+#### The Merkle Root:
+
+The getRoot() method gives us the root of the tree, which we convert to a hexadecimal string with `.toString('hex')`(This method converts data from its original binary or buffer format into a hexadecimal (hex) string representation for human readabilty). This root hash summarizes all the data in the tree.
+
+#### Creating and Verifying a Merkle Proof:
+
+To prove that the character 'k' is indeed in our dataset without revealing the entire dataset, we generate a Merkle Proof using getProof(). This proof consists of the minimum set of hashes needed to recreate the path from our data ('k') to the root hash.
+The verify() method checks if this path is correct, effectively proving that 'k' is part of our dataset, based on the proof provided and without needing to compare against every piece of data in the set.
+
+#### Logged Data
+
+The Tree from the logged data showcases the process of constructing a Merkle Tree, generating a Merkle Proof for a specific piece of data, and verifying that data's presence within the tree, all while maintaining data integrity and privacy.
 
 ## Conclusion
 
