@@ -127,10 +127,15 @@ console.log('Proof for:', dataToProve);
 console.log('Proof:', proof);
 console.log(tree.toString())
 console.log('Is Verified:', verified);
+```
 
-// Save the file and execute it using the command node (node index.js)
+Save the file and execute it using the command node
 
-// Logged Data
+`node index.js`
+
+ The logged Data shows as follows:
+
+```javascript
 Merkle Root: a7658d9f1b7d4e4d50184435344c7b27fd0d10b1f813143c421bb0733969054c
 Proof for: k
 Proof: [
