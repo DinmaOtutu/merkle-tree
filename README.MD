@@ -67,13 +67,13 @@ If we want to validate K(Hash(Transaction 4)) in the tree:
 
 - Start with H('K') – our target hash to verify.
 
-- Take the sibling hash, H('r') (Transaction 3), and hash it together with H('k'). This will give  H('RK'), which is the parent hash of 'K' and 'R'.
+- Take the sibling hash, H('R') (Transaction 3), and hash it together with H('k'). This will give  H('RK'), which is the parent hash of 'K' and 'R'.
 
 - Move up the tree to the next level. Take H('ME') (the hash of Transactions 1 and 2), which is the sibling of H('RK'), and hash it together to get the hash H('MERK').
 
-- Lastly, take the hash of the sibling of H('MERK'), which is H('LE') (the hash of Transactions 5 and 6), and hash it with H('MERK') to get the root hash H('MERKLE').
+- Lastly, take the hash of the sibling of H('MERK'), which is H('LE') to get the root hash H('MERKLE').
 
-- If H('merkle') matches the root hash of the Merkle tree, then 'K' is indeed part of the Merkle tree.
+- If H('MERKLE') matches the root hash of the Merkle tree, then 'K' is indeed part of the Merkle tree.
 - This process does not require to check or know the individual hashes of Transactions 1, 2, 5, and 6, only the combined hashes at each level up to the root.
 
 ## Implementing Merkle Proof In Javascript
