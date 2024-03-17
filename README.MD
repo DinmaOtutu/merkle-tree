@@ -46,7 +46,7 @@ You will learn about Merkle Tree and how it works.
 
 ![Merkle tree](/assets/merkleTree.jpeg)
 
- Merkle Tree is a binary tree in which every leaf node is a hash of a block of data (for example, a transaction), and every non-leaf node is a hash of the concatenation of its child nodes.  The the bottom-most nodes labeled in the diagram as `leaf nodes` contain hashes of individual transactions, and  moving up the tree, each non-leaf node known as the `parent node` is a hash of the combined hashes of its two child nodes(leaf nodes). This process continues until there is a single hash at the top, known as the Merkle root(Root node).
+ Merkle Tree is a binary tree in which every leaf node is a hash of a block of data (for example, a transaction), and every non-leaf node is a hash of the concatenation of its child nodes.  The bottom-most nodes labeled in the diagram as `leaf nodes` contain hashes of individual transactions, and  moving up the tree, each non-leaf node known as the `parent node` is a hash of the combined hashes of its two child nodes(leaf nodes). This process continues until there is a single hash at the top, known as the Merkle root(Root node).
 
  Any alteration of a single transaction would result in a different hash being propagated up to the root. This concept allows for the verification of a transaction within a block without needing to hold the entire block's data. When correctly combined, should match the block's Merkle root.
 
