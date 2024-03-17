@@ -20,6 +20,6 @@ You will learn about Merkle Tree, Hash functions, and the implementation of Merk
 
 ## What is Merkle tree
 
-![Merkle tree](/assests/merkleTree.jpeg)
+![Merkle tree](/assets/merkleTree.jpeg)
 
-This is a hash based data structure that is used for data validation.
+This is a hash based data structure that is used for data validation....
