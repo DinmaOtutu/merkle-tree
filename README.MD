@@ -191,7 +191,6 @@ The getRoot() method gives us the root of the tree, which we convert to a hexade
 #### Creating and Verifying a Merkle Proof
 
 To prove that the character 'k' is indeed in our dataset without revealing the entire dataset, we generate a Merkle Proof using getProof(). This proof consists of the minimum set of hashes needed to recreate the path from our data ('k') to the root hash.
-
 The verify() method checks if this path is correct, effectively proving that 'k' is part of our dataset, based on the proof provided and without needing to compare against every piece of data in the set.If the method returns true, it means that the data is a part of the tree, else it is not.
 
 If we pass a different value to the `dataToProve` variable and the value doesn't belong to the tree, the `verified` output will be `false`.
