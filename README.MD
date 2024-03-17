@@ -189,6 +189,8 @@ const proof = tree.getProof(keccak256(emailToProve)).map(x => x.data.toString('h
 // Verify the Merkle proof
 const verified = tree.verify(proof, keccak256(emailToProve), root);
 
+console.log('Is Verified:', verified);
+Is Verified: false
 // The verified value will be false, since otutudinma1@gmail.com is not part of the whitelisted emails.
 ```
 
