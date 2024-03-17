@@ -69,10 +69,12 @@ If we want to validate K(Hash(Transaction 4)) in the tree, we need H(R)(Hash(Tra
 
  How Merkle Proofs would work for a block of data.
 
- - Create an empty directory with the following command.
+- Create an empty directory with the following command.
 
-// For Linux and Mac
+ For Linux and Mac
+
 `mkdir merkle-proof`or any preferred name.
+
 - Initialize a Node.js project.
 
 `npm init -y`
