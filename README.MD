@@ -13,9 +13,10 @@
     - [Explanation](#explanation)
       - [Preparing Data for the Tree](#preparing-data-for-the-tree)
       - [Building the Merkle Tree](#building-the-merkle-tree)
-      - [The Merkle Root:](#the-merkle-root)
-      - [Creating and Verifying a Merkle Proof:](#creating-and-verifying-a-merkle-proof)
+      - [The Merkle Root](#the-merkle-root)
+      - [Creating and Verifying a Merkle Proof](#creating-and-verifying-a-merkle-proof)
       - [Logged Data](#logged-data)
+  - [How Merkle Proofs would work for a whitelisting of three email addresses](#how-merkle-proofs-would-work-for-a-whitelisting-of-three-email-addresses)
   - [Conclusion](#conclusion)
 
 ## Introduction
@@ -149,11 +150,11 @@ Is Verified: true
 The MerkleTree class from the merkletreejs library is used to create the tree. When building the tree, we specify to use the keccak256 hash function and to sort pairs, which ensures consistency in how the tree is structured.
 As the tree is constructed, each non-leaf node is created by hashing together its child nodes, layer by layer, until we reach the root.
 
-#### The Merkle Root:
+#### The Merkle Root
 
 The getRoot() method gives us the root of the tree, which we convert to a hexadecimal string with `.toString('hex')`(This method converts data from its original binary or buffer format into a hexadecimal (hex) string representation for human readabilty). This root hash summarizes all the data in the tree.
 
-#### Creating and Verifying a Merkle Proof:
+#### Creating and Verifying a Merkle Proof
 
 To prove that the character 'k' is indeed in our dataset without revealing the entire dataset, we generate a Merkle Proof using getProof(). This proof consists of the minimum set of hashes needed to recreate the path from our data ('k') to the root hash.
 The verify() method checks if this path is correct, effectively proving that 'k' is part of our dataset, based on the proof provided and without needing to compare against every piece of data in the set.
@@ -161,6 +162,35 @@ The verify() method checks if this path is correct, effectively proving that 'k'
 #### Logged Data
 
 The Tree from the logged data showcases the process of constructing a Merkle Tree, generating a Merkle Proof for a specific piece of data, and verifying that data's presence within the tree, all while maintaining data integrity and privacy.
+
+## How Merkle Proofs would work for a whitelisting of three email addresses
+
+Using the same logic for proving 'k', we list the email address we want to whitelist
+
+```javascript
+const whitelist = [
+  'email1@example.com',
+  'email2@example.com',
+  'email3@example.com'
+];
+// Hash each email address
+const leaves = whitelist.map(addr => keccak256(addr));
+
+// Create the Merkle Tree
+const tree = new MerkleTree(leaves, keccak256, { sortPairs: true });
+
+// Get the Merkle root
+const root = tree.getRoot().toString('hex');
+
+// Generate a Merkle proof for the first email address
+const emailToProve = 'otutudinma1@gmail.com';
+const proof = tree.getProof(keccak256(emailToProve)).map(x => x.data.toString('hex'));
+
+// Verify the Merkle proof
+const verified = tree.verify(proof, keccak256(emailToProve), root);
+
+// The verified value will be false, since otutudinma1@gmail.com is not part of the whitelisted emails.
+```
 
 ## Conclusion
 

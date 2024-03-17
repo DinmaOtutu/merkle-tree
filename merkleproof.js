@@ -1,17 +1,29 @@
-const { MerkleTree } = require('merkletreejs')
-const SHA256 = require('crypto-js/sha256')
+const { MerkleTree } = require('merkletreejs');
+const keccak256 = require('keccak256');
 
-const leaves = ['m', 'e', 'r', 'k', 'l', 'e'].map(x => SHA256(x))
-const tree = new MerkleTree(leaves, SHA256)
-const root = tree.getRoot().toString('hex')
-const leaf = SHA256('a')
-const proof = tree.getProof(leaf)
-console.log(tree.verify(proof, leaf, root)) // true
+// List of data transactions
+const data = [
+  'm',
+  'e',
+  'r',
+  'k',
+  'l',
+  'e'
+];
 
 
-const badLeaves = ['m', 'e', 'r', 'k', 'l', 'e'].map(x => SHA256(x))
-const badTree = new MerkleTree(badLeaves, SHA256)
-const badLeaf = SHA256('x')
-const badProof = badTree.getProof(badLeaf)
-console.log(badTree.verify(badProof, badLeaf, root)) 
-console.log(tree.toString())
+// Hash each data
+const leaves = data.map(addr => keccak256(addr));
+
+// Create the Merkle Tree
+const tree = new MerkleTree(leaves, keccak256, { sortPairs: true });
+
+// Get the Merkle root
+const root = tree.getRoot().toString('hex');
+
+// Generate a Merkle proof for the data K
+const dataToProve = 'k';
+const proof = tree.getProof(keccak256(dataToProve)).map(x => x.data.toString('hex'));
+
+// Verify the Merkle proof
+const verified = tree.verify(proof, keccak256(dataToProve), root);
