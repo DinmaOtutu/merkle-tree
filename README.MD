@@ -69,7 +69,17 @@ If we want to validate K(Hash(Transaction 4)) in the tree, we need H(R)(Hash(Tra
 
  How Merkle Proofs would work for a block of data.
 
-We go ahead to install Merkle Tree library by using the command
+ - Create an empty directory with the following command.
+
+// For Linux and Mac
+`mkdir merkle-proof`or any preferred name.
+- Initialize a Node.js project.
+
+`npm init -y`
+
+For the implementation of Merkle proof, we will use the merkletreejs package. It provides all the  functions to construct a Merkle tree, generate and verify proof.
+
+- We go ahead to install Merkle Tree library by using the command
 
 `npm install merkletreejs`
 
@@ -77,6 +87,8 @@ For hashing install a hash library keccak256
 
  `npm install keccak256`
 
+- Create an index file and import the dependencies
+  
  ``` javascript
  const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
@@ -113,6 +125,8 @@ console.log('Proof for:', dataToProve);
 console.log('Proof:', proof);
 console.log(tree.toString())
 console.log('Is Verified:', verified);
+
+// Save the file and execute it using the command node (node index.js)
 
 // Logged Data
 Merkle Root: a7658d9f1b7d4e4d50184435344c7b27fd0d10b1f813143c421bb0733969054c
@@ -157,7 +171,9 @@ The getRoot() method gives us the root of the tree, which we convert to a hexade
 #### Creating and Verifying a Merkle Proof
 
 To prove that the character 'k' is indeed in our dataset without revealing the entire dataset, we generate a Merkle Proof using getProof(). This proof consists of the minimum set of hashes needed to recreate the path from our data ('k') to the root hash.
-The verify() method checks if this path is correct, effectively proving that 'k' is part of our dataset, based on the proof provided and without needing to compare against every piece of data in the set.
+The verify() method checks if this path is correct, effectively proving that 'k' is part of our dataset, based on the proof provided and without needing to compare against every piece of data in the set.If the method returns true, it means that the data is a part of the tree, else it is not.
+
+If we pass a different value to the `dataToProve` variable and the value doesn't belong to the tree, the output will be false.
 
 #### Logged Data
 
