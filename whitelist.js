@@ -18,7 +18,7 @@ const tree = new MerkleTree(leaves, keccak256, { sortPairs: true });
 const root = tree.getRoot().toString('hex');
 
 // Generate a Merkle proof for the first email address
-const emailToProve = 'otutudinma@gmail.com';
+const emailToProve = 'otutudinma1@gmail.com';
 const proof = tree.getProof(keccak256(emailToProve)).map(x => x.data.toString('hex'));
 
 // Verify the Merkle proof
