@@ -28,5 +28,5 @@ const verified = tree.verify(proof, keccak256(emailToProve), root);
 console.log('Merkle Root:', root);
 console.log('Proof for:', emailToProve);
 console.log('Proof:', proof);
-console.log(tree.toString())
+console.log('Tree',tree.toString())
 console.log('Is Verified:', verified);
