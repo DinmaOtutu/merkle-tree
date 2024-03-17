@@ -20,6 +20,6 @@ You will learn about Merkle Tree, Hash functions, and the implementation of Merk
 
 ## What is Merkle tree
 
-![Merkle tree](https://drive.google.com/file/d/1Ket3iB1wtLFnfi45Yv69YXGU1UqWtoqM/view?usp=share_link)
+![Merkle tree](https://console.cloudinary.com/console/c-d6075c7540a3ce7db5280f12cb9f45/media_library/search?sortDirection=desc&sortField=uploaded_at&view_mode=mosaic&q=%7B%22uploadedTimeOption%22%3A%22today%22%2C%22createdTimeOption%22%3A%22today%22%2C%22createdByUsers%22%3A%5B%22abb776a6093fc49c918c3cac1c8d0a%22%5D%7D)
 
 This is a hash based data structure that is used for data validation.
