@@ -74,7 +74,7 @@ For hashing install a hash library keccak256
  const { MerkleTree } = require('merkletreejs');
 const keccak256 = require('keccak256');
 
-// List of email addresses for the whitelist
+// List of data transactions
 const data = [
   'm',
   'e',
