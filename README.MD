@@ -16,7 +16,7 @@
 Blockchain technology, is a distributed ledger that records transactions across multiple computers in such a way that the registered transactions cannot be altered.
 However, with the massive volume of transactions and the distributed nature of the network, ensuring swift verification of data presents a significant challenge.
 
-Imagine having to verify the authenticity of a single transaction within a block of thousands, or checking the integrity of a file in a massive dataset. This is where Merkle trees come into play by providing a simplified process of summarizing all the transactions into a single hash.
+Imagine having to verify the authenticity of a single transaction within a block of thousands, or checking the integrity of a file in a massive dataset. This is where Merkle trees come into play, by providing a simplified process of summarizing all the transactions into a single hash.
 
 You will learn about Merkle Tree and how it works.
 
@@ -24,7 +24,7 @@ You will learn about Merkle Tree and how it works.
 
 ![Merkle tree](/assets/merkleTree.jpeg)
 
-This is a hash based data structure that is used for data validation. A binary tree consisting of hash pointers. The leaves (the bottom-most nodes) from the diagram its labled `leaf nodes` contain hashes of individual transactions. Moving up the tree, each non-leaf node known as the parent node is a hash of the combined hashes of its two child nodes(leaf nodes). This process continues until there is a single hash at the top, known as the Merkle root(Root node).
+This is a hash based data structure that is used for data validation. A binary tree consisting of hash pointers. The leaves (the bottom-most nodes) labeled in the diagram as `leaf nodes` contain hashes of individual transactions. Moving up the tree, each non-leaf node known as the parent node is a hash of the combined hashes of its two child nodes(leaf nodes). This process continues until there is a single hash at the top, known as the Merkle root(Root node).
 
  Any alteration of a single transaction would result in a different hash being propagated up to the root. This concept allows for the verification of a transaction within a block without needing to hold the entire block's data. When correctly combined, should match the block's Merkle root.
 
