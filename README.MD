@@ -32,7 +32,7 @@ You will learn about Merkle Tree and how it works.
 
 - *Node*:  A basic unit of binary tree used to build the structure which contains data and one or several links to other nodes.
 
-- *Binary tree*: nodes arranged in a hierarchical structure. Each node in a binary tree has a maximum of two children, referred to as the left child and the right child.
+- *Binary tree*: Nodes arranged in a hierarchical structure. Each node in a binary tree has a maximum of two children, referred to as the left child and the right child.
 
 - *Leaf node*: It represents the end of a path in the tree and contain hashes of the data blocks (e.g., transactions). These are the tree's foundation and they have  no children.
 
@@ -52,7 +52,7 @@ The power of a Merkle Tree lies in its Merkle Root, if one piece or more of data
 
 ## Hash functions
 
-These are simply methods in cryptography to generate fixed-size output for an input of variable size.Merkle tree uses a one-way hashing which is efficient for data validation. This means that no two plaintext hashes can have the same value.
+These are simply methods in cryptography to generate fixed-size output for an input of variable size. Merkle tree uses a one-way hashing which is efficient for data validation. This means that no two plaintext hashes can have the same value.
 
 ## Merkle Proof
 
@@ -78,7 +78,9 @@ If we want to validate K(Hash(Transaction 4)) in the tree:
 
 ## Implementing Merkle Proof In Javascript
 
- How Merkle Proofs would work for a block of data.
+In the upcoming code snippet, we're going to demonstrate the construction of a Merkle Tree using JavaScript, specifically focusing on how to generate and verify a Merkle Proof for a piece of data. 
+
+We set up a Node.js environment and leverage the merkletreejs library alongside the keccak256 hash function. We would create a Merkle Tree from a series of data, generating a proof for a specific piece of data, and verify this proof to attest its presence within our tree.
 
 - Create an empty directory with the following command.
 
