@@ -36,9 +36,9 @@ You will learn about Merkle Tree and how it works.
 
 - *Leaf node*: It represents the end of a path in the tree and contain hashes of the data blocks (e.g., transactions). These are the tree's foundation and they have  no children.
 
-- *Parent node*: Known as non-leaf nodes in a Merkle Tree that contain hashes derived from their child(leaf node).
+- *Parent node*: Known as non-leaf nodes in a Merkle Tree that contain hashes derived from their child(leaf node). This combination process uses a cryptographic hash function, which ensures any tiny change in data alters the hash.
 
-- *Root node*: A type of parent node known as Merkle root, contains a hash derived from the entire dataset.
+- *Root node*: At the very top of the tree sits a single node called the Merkle root. This node's hash is derived from the hashes of all the data below it. It serves as a compact summary of all the data in the tree.
 
 - *Hash*: The output of a hash function.
 
@@ -46,10 +46,9 @@ You will learn about Merkle Tree and how it works.
 
 ![Merkle tree](/assets/merkleTree.jpeg)
 
- Merkle Tree is a binary tree in which every leaf node is a hash of a block of data (for example, a transaction), and every non-leaf node is a hash of the concatenation of its child nodes.  
- This process continues until there is a single hash at the top, known as the Merkle root(Root node).
+ A Merkle Tree is a special type of binary tree used for securely organizing and verifying chunks of data, such as transactions in a blockchain.
 
- Any alteration of a single transaction would result in a different hash being propagated up to the root. This concept allows for the verification of a transaction within a block without needing to hold the entire block's data. When correctly combined, should match the block's Merkle root.
+The power of a Merkle Tree lies in its Merkle Root, if one piece or more of data changes anywhere in the tree, this change cascades up through the hashes, resulting in a different Merkle Root. This feature makes it easy to verify the accuracy and completeness of the data without needing to examine each piece individually.
 
 ## Hash functions
 
@@ -57,14 +56,25 @@ These are simply methods in cryptography to generate fixed-size output for an in
 
 ## Merkle Proof
 
-Merkle proof is based on the Merkle tree data structure and it is used to determine if a data (for example transaction) belongs in a tree, to prove the validity of data as part of a dataset without storing the whole data.
+Merkle proof is based on the Merkle tree data structure and it is used to determine if a data (for example transaction) belongs in a tree, to prove the validity of the transaction as part of a dataset without storing it all.
 
 From the diagram of Merkle tree above, hashing the hash of nodes M and E gives the non-leaf node
 H(ME). Hashing the hash of nodes H(ME) and H(RK) we obtain the non-leaf node H(MERK). The root node H(MERKLE) is obtained by hashing the hash of H(MERK) and H(LE).
 
 For us to prove that a particular node is part of the Merkle tree, we do not need to hash all the nodes in the tree.
 
-If we want to validate K(Hash(Transaction 4)) in the tree, we need H(R)(Hash(Transaction 3)), H(ME), and H(MERK). Hash H(MERK) and H(LE), gives the root node - H(MERKLE). If the hash of the root doesn't match the hash generated, the data isn't accurate.
+If we want to validate K(Hash(Transaction 4)) in the tree:
+
+- Start with H('K') – our target hash to verify.
+
+- Take the sibling hash, H('r') (Transaction 3), and hash it together with H('k'). This will give  H('RK'), which is the parent hash of 'K' and 'R'.
+
+- Move up the tree to the next level. Take H('ME') (the hash of Transactions 1 and 2), which is the sibling of H('RK'), and hash it together to get the hash H('MERK').
+
+- Lastly, take the hash of the sibling of H('MERK'), which is H('LE') (the hash of Transactions 5 and 6), and hash it with H('MERK') to get the root hash H('MERKLE').
+
+- If H('merkle') matches the root hash of the Merkle tree, then 'K' is indeed part of the Merkle tree.
+- This process does not require to check or know the individual hashes of Transactions 1, 2, 5, and 6, only the combined hashes at each level up to the root.
 
 ## Implementing Merkle Proof In Javascript
 
